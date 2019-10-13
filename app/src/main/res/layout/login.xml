@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:text="@string/mensagem_inicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/boasvindas_texto"/>
+    <TextView
+            android:text="Usuário: "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/usuario_texto"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/campo_usuario"
+            android:hint="Digite seu usuário"/>
+    <TextView
+            android:text="Senha:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/senha_texto"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/campo_senha"
+            android:hint="Digite sua senha"/>
+
+        <Button
+                android:text="Confimar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/botao_login"/>
+        <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"/>
+</LinearLayout>
