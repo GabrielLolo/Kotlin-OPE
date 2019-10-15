@@ -38,7 +38,10 @@ class BuscarActivity : DebugActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item?.itemId
 
-        if (id == android.R.id.home) finish()
+        if (id == android.R.id.home) {
+            finish()
+        }
+        return true
     }
 }
 

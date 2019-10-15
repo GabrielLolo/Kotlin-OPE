@@ -11,12 +11,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_tela_inicial.*
 import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.login.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class TelaInicialActivity : DebugActivity() {
+class TelaInicialActivity : DebugActivity(),
+    NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +36,12 @@ class TelaInicialActivity : DebugActivity() {
         supportActionBar?.title = "Olá!"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        btn_consultas.setOnClickListener{onClickConsultas()}
-        btn_notificacao.setOnClickListener{onClickNotificacao()}
-        btn_pacientes.setOnClickListener{onClickPacientes()}
-    }
+        btn_consultas.setOnClickListener { onClickConsultas() }
+        btn_notificacao.setOnClickListener { onClickNotificacao() }
+        btn_pacientes.setOnClickListener { onClickPacientes() }
 
+        configurarMenuLateral()
+    }
 
 
     fun onClickConsultas() {
@@ -82,49 +85,60 @@ class TelaInicialActivity : DebugActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item?.itemId
 
-        if(id == R.id.action_atualizar){
-            Toast.makeText(this,
+        if (id == R.id.action_atualizar) {
+            Toast.makeText(
+                this,
                 "Clicou em atualizar",
-                Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_SHORT
+            ).show()
+
+            
         }
-        if(id == R.id.action_configurar){
-            Toast.makeText(this,
+        if (id == R.id.action_configurar) {
+            Toast.makeText(
+                this,
                 "Clicou em configurar",
-                Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_SHORT
+            ).show()
             val intent = Intent(this, ConfigurarActivity::class.java)
             startActivity(intent)
         }
-        if(id == R.id.action_buscar){
-            Toast.makeText(this,
+        if (id == R.id.action_buscar) {
+            Toast.makeText(
+                this,
                 "Clicou em buscar",
-                Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_SHORT
+            ).show()
             val intent = Intent(this, BuscarActivity::class.java)
             startActivity(intent)
-        } else if (id == android.R.id.home){
+        } else if (id == android.R.id.home) {
             finish()
         }
 
         return super.onOptionsItemSelected(item)
 
     }
-    override fun onNavigationItemSelected(item: MenuItem): Boolean{
-        when(item.itemId){
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             R.id.nav_disciplinas -> {
                 Toast.makeText(
                     this,
                     "Clicou nas disciplinas",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
-            R.id.nav_forum ->{
+            /*R.id.nav_forum -> {
                 Toast.makeText(
                     this,
                     "Clicou no forum",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
 
                 val intent = Intent(this, ForumActivity::class.java)
                 startActivity(intent)
-            }
+            }*/
         }
 
         layoutMenuLateral.closeDrawer(GravityCompat.START)
@@ -132,7 +146,7 @@ class TelaInicialActivity : DebugActivity() {
         return true
     }
 
-    private fun configurarMenuLateral(){
+    private fun configurarMenuLateral() {
         var toogle = ActionBarDrawerToggle(
 
             this,
@@ -147,4 +161,5 @@ class TelaInicialActivity : DebugActivity() {
 
         menu_lateral.setNavigationItemSelectedListener(this)
 
+    }
 }

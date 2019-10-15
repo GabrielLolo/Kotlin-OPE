@@ -5,4 +5,6 @@
     <string name="action_buscar">Buscar</string>
     <string name="action_atualizar">atualizar</string>
     <string name="mensagem_inicio_configurar">Bem vindo as configurações!</string>
+    <string name="close">Fechado</string>
+    <string name="open">Aberto</string>
 </resources>
