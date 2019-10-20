@@ -20,7 +20,7 @@ class MainActivity : DebugActivity() {
         imgLogin.setImageResource(R.drawable.imagem_login)
 
 
-        botao_login.setOnClickListener{onClickLogin()}
+        botao_login.setOnClickListener { onClickLogin() }
 
 
     }
@@ -35,7 +35,7 @@ class MainActivity : DebugActivity() {
         val usuario = "aluno"
         val senha = "impacta"
 
-        if (texto_usuario == usuario && senha_usuario==senha) {
+        if (texto_usuario == usuario && senha_usuario == senha) {
 
             val intent = Intent(this, TelaInicialActivity::class.java)
             startActivity(intent)
@@ -44,33 +44,16 @@ class MainActivity : DebugActivity() {
                 "Login com sucesso!",
                 Toast.LENGTH_SHORT
             ).show()
-        }
-        else{
+        } else {
             Toast.makeText(
                 this,
                 "Usuário ou senha incorretos",
-                Toast.LENGTH_LONG).show()
-            }
-        var progress = 0
-
-        if(progress < 100){
-
-            progress +=10
-
-            progress_bar.progress = progress
-
-        } else{
-
-            progress = 0
-
-            progress_bar.progress = progress
-
-            progress_bar.visibility = View.VISIBLE
+                Toast.LENGTH_LONG
+            ).show()
         }
 
-        if(progress == 100) progress_bar.visibility = View.INVISIBLE
-        }
-        }
+    }
+}
 
 
         //val intent = Intent(this, TelaInicialActivity::class.java)

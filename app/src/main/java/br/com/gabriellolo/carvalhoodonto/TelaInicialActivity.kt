@@ -5,16 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_tela_inicial.*
-import kotlinx.android.synthetic.main.login.*
-import kotlinx.android.synthetic.main.login.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class TelaInicialActivity : DebugActivity(),
@@ -29,20 +26,40 @@ class TelaInicialActivity : DebugActivity(),
         val nome = args?.getString("nome_usuario")
         val n = args?.getInt("numero")
 
-        texto_tela_inicial.setText("Bem vindo!")
         setSupportActionBar(toolbar)
 
+        configurarMenuLateral()
 
         supportActionBar?.title = "Olá!"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        btn_consultas.setOnClickListener { onClickConsultas() }
-        btn_notificacao.setOnClickListener { onClickNotificacao() }
-        btn_pacientes.setOnClickListener { onClickPacientes() }
+        //btn_consultas.setOnClickListener { onClickConsultas() }
+        //btn_notificacao.setOnClickListener { onClickNotificacao() }
+        //btn_pacientes.setOnClickListener { onClickPacientes() }
 
-        configurarMenuLateral()
+
+        recyclerOpcoes?.layoutManager = LinearLayoutManager(this)
+        recyclerOpcoes?.itemAnimator = DefaultItemAnimator()
+        recyclerOpcoes?.setHasFixedSize(true)
     }
 
+    var opcoes = listOf<Opcoes>()
+    override fun onResume() {
+        super.onResume()
+        opcoes = OpcoesService.getOpcao(this)
+        recyclerOpcoes?.adapter =
+            OpcoesAdapter(opcoes) {
+                onClickOpcoes(it)
+        }
+    }
+
+    fun onClickOpcoes(opcao: Opcoes) {
+        Toast.makeText(
+            this,
+            "Clicou em Opção ${opcao.nome}" ,
+            Toast.LENGTH_SHORT).show()
+
+    }
 
     fun onClickConsultas() {
 
@@ -91,8 +108,6 @@ class TelaInicialActivity : DebugActivity(),
                 "Clicou em atualizar",
                 Toast.LENGTH_SHORT
             ).show()
-
-            
         }
         if (id == R.id.action_configurar) {
             Toast.makeText(
@@ -163,3 +178,4 @@ class TelaInicialActivity : DebugActivity(),
 
     }
 }
+
